@@ -1,0 +1,13 @@
+version: '3'
+services:
+    api:
+        image: flask-api-db-and-cache:latest
+        build: ./3-flask-api-db-and-cache
+        ports:
+         - 9999:5000
+        links:
+         - redis
+        environment:
+         - REDIS_HOST=redis
+    redis:
+        image: redis:latest

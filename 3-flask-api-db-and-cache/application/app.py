@@ -14,7 +14,10 @@ def hello_world():
 @app.route('/cache/<key>', methods=['GET', 'POST'])
 def cache(key):
     if request.method == 'POST':
-        return cache_db.set(key, ex=30)
+        value = request.form['value']
+        cache_db.set(name=key, value=value, ex=30)
+
+        return 'done'
 
     value_in_cache = cache_db.get(key)
 
